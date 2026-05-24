@@ -1,4 +1,4 @@
-use hecs::World;
+use hecs::{World};
 
 use crate::components::{Player, Position};
 
