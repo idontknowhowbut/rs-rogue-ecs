@@ -2,7 +2,10 @@ mod components;
 mod systems;
 
 use components::{Player, Position, Renderable};
-use crossterm::{cursor, execute, terminal};
+use crossterm::{
+    cursor::{self, MoveDown},
+    execute, terminal,
+};
 use hecs::World;
 use std::io::stdout;
 
@@ -15,7 +18,13 @@ fn main() -> std::io::Result<()> {
     world.spawn((Position { x: 10, y: 10 }, Renderable { glyph: 'Ö' }, Player));
 
     loop {
-        systems::render::render(&mut stdout, &world)?
+        systems::render::render(&mut stdout, &world)?;
+        let intent: systems::input::Intent = scan_input();
+        match intent {
+            Intent::Move { dx, dy } => movement::process_movement(&mut world, dx, dy),
+            Intent::Quit => break,
+            Intent::None => (),
+        }
     }
 
     execute!(stdout, terminal::LeaveAlternateScreen, cursor::Show)?;
