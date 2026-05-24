@@ -1,10 +1,8 @@
 mod components;
-mod render;
-mod input;
+mod systems;
 
 use crossterm::{
-    cursor, execute,
-    terminal::{self},
+    cursor, execute, terminal
 };
 use hecs::World;
 use std::io::stdout;
@@ -16,12 +14,12 @@ fn main() -> std::io::Result<()> {
     execute!(stdout, terminal::EnterAlternateScreen, cursor::Hide)?;
 
     let mut world = World::new();
-    world.spawn((Position { x: 10, y: 10 }, Renderable { glyph: '@' }, Player));
+    world.spawn((Position { x: 10, y: 10 }, Renderable { glyph: 'Ö' }, Player));
 
     loop {
-        render::render(&mut stdout, &world)?;
+        systems::render::render(&mut stdout, &world)?;
 
-        if !input::read_input(&mut world)? {
+        if !systems::input::read_input(&mut world)? {
             break;
         }
 
