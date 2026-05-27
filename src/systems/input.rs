@@ -3,7 +3,7 @@ use std::time::Duration;
 use crossterm::event::{poll, read, Event, KeyCode};
 pub enum Intent {
     Quit,
-    Move { dx: i8, dy: i8 },
+    Move { dx: i32, dy: i32 },
     None,
 }
 
@@ -21,5 +21,5 @@ pub fn scan_input() -> Intent {
             }
         }
     }
-    return result
+    return result;
 }

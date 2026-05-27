@@ -3,11 +3,16 @@ mod systems;
 
 use components::{Player, Position, Renderable};
 use crossterm::{
-    cursor::{self, MoveDown},
+    cursor,
     execute, terminal,
 };
 use hecs::World;
 use std::io::stdout;
+
+use crate::systems::{
+    input::{scan_input, Intent},
+    movement,
+};
 
 fn main() -> std::io::Result<()> {
     let mut stdout = stdout();
@@ -21,7 +26,8 @@ fn main() -> std::io::Result<()> {
         systems::render::render(&mut stdout, &world)?;
         let intent: systems::input::Intent = scan_input();
         match intent {
-            Intent::Move { dx, dy } => movement::process_movement(&mut world, dx, dy),
+            Intent::Move { dx, dy } => 
+                movement::process_player_movement(&mut world, dx, dy),
             Intent::Quit => break,
             Intent::None => (),
         }
