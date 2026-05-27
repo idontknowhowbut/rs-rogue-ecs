@@ -1,4 +1,4 @@
-use hecs::{World};
+use hecs::World;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -17,8 +17,9 @@ pub fn process_movement(world: &mut World, dx: i32, dy: i32) {}
 use crate::components::{Player, Position};
 
 pub fn process_player_movement(world: &mut World, dx: i32, dy: i32) {
-    if let Some(n) = world.query_mut()::<(&mut Position, &Player)>  {
-
-    };
+    for (_entity, (_player, pos)) in world.query_mut::<(&Player, &mut Position)>() {
+        pos.x += dx;
+        pos.y += dy;
+    }
 }
 >>>>>>> ed5b3f5 (develop: iterate movement)
