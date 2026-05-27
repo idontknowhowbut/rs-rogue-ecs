@@ -9,6 +9,11 @@ use crossterm::{
 use hecs::World;
 use std::io::stdout;
 
+use crate::systems::{
+    input::{scan_input, Intent},
+    movement,
+};
+
 fn main() -> std::io::Result<()> {
     let mut stdout = stdout();
     terminal::enable_raw_mode()?;
