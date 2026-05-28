@@ -29,13 +29,11 @@ fn render_map(stdout: &mut Stdout, map: &Map) {
     let mut y: i32 = 0;
     let mut map_row: Vec<char> = Vec::new();
 
-    for tile in &map.map_field[x as usize..(x+map.map_width*y) as usize] {
-
-
+    for tile in &map.map_field[(map.map_width*y) as usize..(x+map.map_width*y) as usize] {
         let glyph: char;
         match *tile {
-            TileType::Floor => glyph = '.',
-            TileType::Wall => glyph = '#',
+            TileType::Floor => map_row.push('.'),
+            TileType::Wall =>  map_row.push('#'),
         }
 
         x += 1;
