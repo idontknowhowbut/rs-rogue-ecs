@@ -8,7 +8,7 @@ use crossterm::{
     execute, terminal,
 };
 use hecs::World;
-use std::{io::stdout, thread, time::Duration};
+use std::{io::stdout};
 use crate::systems::{
     input::{scan_input, Intent},
     movement,
@@ -22,6 +22,7 @@ fn main() -> std::io::Result<()> {
     let mut stdout = stdout();
     terminal::enable_raw_mode()?;
     execute!(stdout, terminal::EnterAlternateScreen, cursor::Hide)?;
+    execute!(stdout, terminal::Clear(terminal::ClearType::All))?;
 
     let mut world = World::new();
     world.spawn((Position { x: 10, y: 10 }, Renderable { glyph: 'Ö' }, Player));

@@ -25,7 +25,7 @@ pub fn new_map(x_size: i32, y_size: i32) -> Map {
     }
 
     //shiid loop to fill 10% of map with walls at random. Replace with proper mapgen
-    for _ in 0..x_size*y_size/100 {  
+    for _ in 0..x_size*y_size/10 {  
         let r = fastrand::usize(..map_field.len());
         map_field[r] = TileType::Wall;
     }
