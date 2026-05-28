@@ -8,13 +8,14 @@ use crossterm::{
     execute, terminal,
 };
 use hecs::World;
-use std::io::stdout;
+use std::{io::stdout, thread, time::Duration};
 use crate::systems::{
     input::{scan_input, Intent},
     movement,
 };
 
-
+const MAP_HEIGHT: i32 = 50;
+const MAP_WIDTH: i32 = 80;
 
 
 fn main() -> std::io::Result<()> {
@@ -24,10 +25,11 @@ fn main() -> std::io::Result<()> {
 
     let mut world = World::new();
     world.spawn((Position { x: 10, y: 10 }, Renderable { glyph: 'Ö' }, Player));
-    let map = map::new_map(80, 50);
+
+    let map = map::new_map(MAP_WIDTH, MAP_HEIGHT);
 
     loop {
-        systems::render::render(&mut stdout, &world)?;
+        systems::render::render(&mut stdout, &world, &map)?;
         let intent: systems::input::Intent = scan_input();
         match intent {
             Intent::Move { dx, dy } => 
