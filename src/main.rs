@@ -1,5 +1,6 @@
 mod components;
 mod systems;
+mod map;
 
 use components::{Player, Position, Renderable};
 use crossterm::{
@@ -8,11 +9,13 @@ use crossterm::{
 };
 use hecs::World;
 use std::io::stdout;
-
 use crate::systems::{
     input::{scan_input, Intent},
     movement,
 };
+
+
+
 
 fn main() -> std::io::Result<()> {
     let mut stdout = stdout();
@@ -21,6 +24,7 @@ fn main() -> std::io::Result<()> {
 
     let mut world = World::new();
     world.spawn((Position { x: 10, y: 10 }, Renderable { glyph: 'Ö' }, Player));
+    let map = map::new_map(80, 50);
 
     loop {
         systems::render::render(&mut stdout, &world)?;
@@ -37,3 +41,5 @@ fn main() -> std::io::Result<()> {
     terminal::disable_raw_mode()?;
     Ok(())
 }
+
+
