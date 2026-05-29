@@ -7,7 +7,8 @@ pub enum TileType{
 
 pub struct Map {
     pub map_field: Vec<TileType>,
-    pub map_width: i32
+    pub map_width: i32,
+    pub map_height: i32
 }
 
 
@@ -33,13 +34,14 @@ pub fn new_map(x_size: i32, y_size: i32) -> Map {
 
     let map= Map {
         map_field: map_field,
-        map_width: x_size
+        map_width: x_size,
+        map_height: y_size
     };
 
     return map
 }
 
-fn idx_map(x: i32, y: i32, x_size: i32) -> usize {
+pub fn idx_map(x: i32, y: i32, x_size: i32) -> usize {
     ((y * x_size) + x) as usize
 }
 

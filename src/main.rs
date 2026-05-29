@@ -39,7 +39,7 @@ fn main() -> std::io::Result<()> {
         let intent: systems::input::Intent = scan_input();
         match intent {
             Intent::Move { dx, dy } => 
-                movement::process_player_movement(&mut world, dx, dy),
+                movement::process_player_movement(&mut world, dx, dy, &map),
             Intent::Quit => break,
             Intent::None => (),
         }
