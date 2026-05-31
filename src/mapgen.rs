@@ -1,6 +1,8 @@
 use crate::map::{idx_map, TileType};
 use fastrand;
 
+const RANDOMNESS_PERCENT: f32 = 0.545;
+
 fn count_wall_neighbors_r1(map: &Vec<TileType>, x: i32, y: i32, width: i32, height: i32) -> i32 {
     let mut count = 0;
     for dy in -1i32..=1 {
@@ -70,7 +72,7 @@ pub fn generate_cave(width: i32, height: i32) -> Vec<TileType> {
     // random %
     let mut map: Vec<TileType> = (0..size)
         .map(|_| {
-            if fastrand::f32() < 0.545 {
+            if fastrand::f32() < RANDOMNESS_PERCENT {
                 TileType::Wall
             } else {
                 TileType::Floor
