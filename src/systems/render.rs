@@ -17,7 +17,7 @@ pub fn render(stdout: &mut Stdout, world: &World, map: &Map) -> std::io::Result<
 
 fn render_entities(stdout: &mut Stdout, world: &World) {
     for (_, (pos, render)) in world.query::<(&Position, &Renderable)>().iter() {
-        _ = queue!(stdout, SetForegroundColor(Color::DarkGreen), cursor::MoveTo(pos.x as u16, pos.y as u16));
+        _ = queue!(stdout, SetForegroundColor(Color::Green), cursor::MoveTo(pos.x as u16, pos.y as u16));
         _ = write!(stdout, "{}", render.glyph);
         _ = execute!(stdout, ResetColor);
     }
@@ -41,7 +41,10 @@ fn render_map(stdout: &mut Stdout, map: &Map) {
         }
 
         let s: String = map_row.into_iter().collect();
-        let _ = queue!(stdout, cursor::MoveTo(0, y as u16));
+        _ = queue!(stdout, 
+            SetForegroundColor(Color::DarkBlue),  // добавь это
+            cursor::MoveTo(0, y as u16)
+        );
         _ = write!(stdout, "{}", s);
         y += 1;
     }
