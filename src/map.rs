@@ -25,11 +25,7 @@ pub fn new_map(x_size: i32, y_size: i32) -> Map {
         map_field[idx_map(x_size - 1, i, x_size)] = TileType::Wall
     }
 
-    //shiid loop to fill 10% of map with walls at random. Replace with proper mapgen
-    for _ in 0..x_size*y_size/10 {  
-        let r = fastrand::usize(..map_field.len());
-        map_field[r] = TileType::Wall;
-    }
+    map_field = crate::mapgen::generate_cave(x_size, y_size);
 
 
     let map= Map {

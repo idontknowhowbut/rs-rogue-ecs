@@ -1,6 +1,7 @@
 mod components;
 mod systems;
 mod map;
+mod mapgen;
 
 use components::{Player, Position, Renderable};
 use crossterm::{
