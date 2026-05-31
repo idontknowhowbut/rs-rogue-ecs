@@ -89,7 +89,7 @@ pub fn generate_cave(width: i32, height: i32) -> Vec<TileType> {
 
     remove_isolated_regions(&mut map, width, height);
 
-    map
+    return map;
 }
 
 fn flood_fill(
@@ -128,7 +128,7 @@ fn flood_fill(
         }
     }
 
-    result
+    return result
 }
 
 pub fn remove_isolated_regions(map: &mut Vec<TileType>, width: i32, height: i32) {

@@ -16,7 +16,6 @@ pub fn new_map(x_size: i32, y_size: i32) -> Map {
 
     map_field = crate::mapgen::generate_cave(x_size, y_size);
 
-
     let mut map = Map {
         map_field: map_field,
         map_width: x_size,
@@ -43,5 +42,4 @@ fn border_map(map: &mut Map) {
         map.map_field[idx_map(0, i, x_size)] = TileType::Wall;
         map.map_field[idx_map(x_size - 1, i, x_size)] = TileType::Wall
     }
-
 }
