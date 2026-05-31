@@ -1,6 +1,9 @@
 use hecs::World;
 
-use crate::{components::{Player, Position}, map::{Map, TileType, idx_map}};
+use crate::{
+    components::{Player, Position},
+    map::{idx_map, Map, TileType},
+};
 
 pub fn process_player_movement(world: &mut World, dx: i32, dy: i32, map: &Map) {
     let mut new_x: i32;
@@ -13,10 +16,8 @@ pub fn process_player_movement(world: &mut World, dx: i32, dy: i32, map: &Map) {
             TileType::Floor => {
                 pos.x = new_x;
                 pos.y = new_y;
-            },
-            TileType::Wall => {
-                return
             }
+            TileType::Wall => return,
         }
     }
 }

@@ -1,28 +1,19 @@
 mod components;
-mod systems;
 mod map;
 mod mapgen;
+mod systems;
 
-use components::{Player, Position, Renderable};
-use crossterm::{
-    cursor,
-    execute, terminal,
-};
-use hecs::World;
-use std::{io::stdout};
 use crate::systems::{
     input::{scan_input, Intent},
     movement,
 };
+use components::{Player, Position, Renderable};
+use crossterm::{cursor, execute, terminal};
+use hecs::World;
+use std::io::stdout;
 
 const MAP_HEIGHT: i32 = 50;
 const MAP_WIDTH: i32 = 80;
-
-
-use crate::systems::{
-    input::{scan_input, Intent},
-    movement,
-};
 
 fn main() -> std::io::Result<()> {
     let mut stdout = stdout();
@@ -39,8 +30,7 @@ fn main() -> std::io::Result<()> {
         systems::render::render(&mut stdout, &world, &map)?;
         let intent: systems::input::Intent = scan_input();
         match intent {
-            Intent::Move { dx, dy } => 
-                movement::process_player_movement(&mut world, dx, dy, &map),
+            Intent::Move { dx, dy } => movement::process_player_movement(&mut world, dx, dy, &map),
             Intent::Quit => break,
             Intent::None => (),
         }
@@ -50,5 +40,3 @@ fn main() -> std::io::Result<()> {
     terminal::disable_raw_mode()?;
     Ok(())
 }
-
-
