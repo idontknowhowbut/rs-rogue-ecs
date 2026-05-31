@@ -13,8 +13,8 @@ pub struct Map {
 pub fn new_map(x_size: i32, y_size: i32) -> Map {
     let map_size: usize = (x_size * y_size) as usize;
     let mut map_field = vec![TileType::Floor; map_size];
-
-    map_field = crate::mapgen::generate_cave(x_size, y_size);
+  
+    map_field = crate::mapgen::generate_cave(x_size, y_size);    
 
     let mut map = Map {
         map_field: map_field,
