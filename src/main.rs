@@ -19,6 +19,7 @@ const MAP_HEIGHT: i32 = 50;
 const MAP_WIDTH: i32 = 80;
 
 
+
 fn main() -> std::io::Result<()> {
     let mut stdout = stdout();
     terminal::enable_raw_mode()?;

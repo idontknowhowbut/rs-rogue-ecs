@@ -1,5 +1,3 @@
-use fastrand;
-
 #[derive(Clone)]
 pub enum TileType{
     Wall, Floor
