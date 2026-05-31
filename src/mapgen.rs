@@ -1,6 +1,5 @@
 use crate::map::{TileType, idx_map};
 use fastrand;
-use std::collections::VecDeque;
 
 fn count_wall_neighbors_r1(map: &Vec<TileType>, x: i32, y: i32, width: i32, height: i32) -> i32 {
     let mut count = 0;
@@ -130,7 +129,7 @@ pub fn remove_isolated_regions(map: &mut Vec<TileType>, width: i32, height: i32)
                 visited[idx_map(*rx, *ry, width)] = true;
             }
 
-            regions.push((region)); 
+            regions.push(region); 
         }
     }
     

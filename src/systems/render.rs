@@ -2,7 +2,7 @@ use crate::{
     components::{Position, Renderable},
     map::{Map, TileType},
 };
-use crossterm::{cursor, execute, queue, style::{Color, ResetColor, SetBackgroundColor, SetForegroundColor}};
+use crossterm::{cursor, execute, queue, style::{Color, ResetColor, SetForegroundColor}};
 use hecs::World;
 use std::io::Stdout;
 use std::io::Write;
@@ -34,8 +34,8 @@ fn render_map(stdout: &mut Stdout, map: &Map) {
         let row_end = row_start + map.map_width as usize;
         for tile in &map.map_field[row_start..row_end] {
             match *tile {
-                TileType::Floor => map_row.push('.'),
-                TileType::Wall => map_row.push('#'),
+                TileType::Floor => map_row.push(' '),
+                TileType::Wall => map_row.push('█'),
             }
 
         }

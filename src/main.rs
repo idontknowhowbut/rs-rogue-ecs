@@ -19,10 +19,6 @@ const MAP_HEIGHT: i32 = 50;
 const MAP_WIDTH: i32 = 80;
 
 
-use crate::systems::{
-    input::{scan_input, Intent},
-    movement,
-};
 
 fn main() -> std::io::Result<()> {
     let mut stdout = stdout();
