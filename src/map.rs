@@ -14,7 +14,9 @@ pub struct Map {
 
 pub fn new_map(x_size: i32, y_size: i32) -> Map {
     let map_size: usize = (x_size * y_size) as usize;
-    let mut map_field = vec![TileType::Floor; map_size];
+    let mut map_field = crate::mapgen::generate_cave(x_size, y_size);
+    
+
     for i in 0..x_size {
         map_field[idx_map(i, 0, x_size)] = TileType::Wall;
         map_field[idx_map(i, y_size - 1, x_size)] = TileType::Wall
@@ -25,7 +27,6 @@ pub fn new_map(x_size: i32, y_size: i32) -> Map {
         map_field[idx_map(x_size - 1, i, x_size)] = TileType::Wall
     }
 
-    map_field = crate::mapgen::generate_cave(x_size, y_size);
 
 
     let map= Map {
@@ -39,5 +40,3 @@ pub fn new_map(x_size: i32, y_size: i32) -> Map {
 
 pub fn idx_map(x: i32, y: i32, x_size: i32) -> usize {
     ((y * x_size) + x) as usize
-}
-
