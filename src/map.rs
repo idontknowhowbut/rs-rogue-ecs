@@ -40,3 +40,4 @@ pub fn new_map(x_size: i32, y_size: i32) -> Map {
 
 pub fn idx_map(x: i32, y: i32, x_size: i32) -> usize {
     ((y * x_size) + x) as usize
+}
